@@ -1,0 +1,976 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pet Water Bottle — Compliance & Labelling Guide</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1a1a2e;
+    --cream: #f7f4ef;
+    --accent: #2d6a4f;
+    --accent-light: #52b788;
+    --amber: #e9c46a;
+    --amber-deep: #c77d2e;
+    --red: #c1440e;
+    --border: rgba(45,106,79,0.2);
+    --card-bg: #ffffff;
+    --muted: #6b6b7b;
+    --tag-bg: rgba(45,106,79,0.08);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--cream);
+    color: var(--ink);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    line-height: 1.7;
+    min-height: 100vh;
+  }
+
+  /* ── HEADER ── */
+  header {
+    background: var(--ink);
+    color: var(--cream);
+    padding: 3rem 4rem 2.5rem;
+    position: relative;
+    overflow: hidden;
+  }
+  header::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: repeating-linear-gradient(
+      -45deg,
+      transparent,
+      transparent 40px,
+      rgba(255,255,255,0.015) 40px,
+      rgba(255,255,255,0.015) 80px
+    );
+  }
+  .brand-line {
+    display: flex; align-items: center; gap: 1rem;
+    margin-bottom: 2rem;
+    position: relative;
+  }
+  .brand-logo {
+    font-family: 'Playfair Display', serif;
+    font-weight: 900;
+    font-size: 1.1rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent-light);
+  }
+  .brand-divider {
+    width: 1px; height: 24px;
+    background: rgba(255,255,255,0.25);
+  }
+  .brand-dept {
+    font-size: 0.75rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.5);
+  }
+  header h1 {
+    font-family: 'Playfair Display', serif;
+    font-weight: 900;
+    font-size: clamp(2rem, 5vw, 3.4rem);
+    line-height: 1.1;
+    max-width: 700px;
+    position: relative;
+  }
+  header h1 span { color: var(--accent-light); }
+  .header-meta {
+    margin-top: 1.5rem;
+    display: flex; flex-wrap: wrap; gap: 1.5rem;
+    position: relative;
+  }
+  .meta-chip {
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 40px;
+    padding: 0.35rem 1rem;
+    font-size: 0.78rem;
+    letter-spacing: 0.06em;
+    color: rgba(255,255,255,0.7);
+  }
+  .meta-chip strong { color: var(--amber); font-weight: 500; }
+
+  /* ── PRODUCT OVERVIEW BAR ── */
+  .product-bar {
+    background: var(--accent);
+    color: white;
+    padding: 1.2rem 4rem;
+    display: flex; align-items: center; gap: 3rem;
+    flex-wrap: wrap;
+  }
+  .product-bar-label {
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    opacity: 0.7;
+    margin-bottom: 0.2rem;
+  }
+  .product-bar-value {
+    font-weight: 500;
+    font-size: 0.95rem;
+  }
+  .product-bar-sep { opacity: 0.3; font-size: 1.5rem; }
+
+  /* ── NAV TABS ── */
+  .nav-tabs {
+    background: var(--card-bg);
+    padding: 0 4rem;
+    border-bottom: 2px solid var(--border);
+    display: flex; gap: 0;
+    position: sticky; top: 0; z-index: 100;
+    overflow-x: auto;
+    box-shadow: 0 2px 20px rgba(0,0,0,0.06);
+  }
+  .tab-btn {
+    padding: 1.1rem 1.6rem;
+    background: none;
+    border: none;
+    border-bottom: 3px solid transparent;
+    cursor: pointer;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.82rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--muted);
+    white-space: nowrap;
+    transition: all 0.2s;
+    margin-bottom: -2px;
+  }
+  .tab-btn:hover { color: var(--accent); }
+  .tab-btn.active {
+    color: var(--accent);
+    border-bottom-color: var(--accent);
+  }
+
+  /* ── MAIN CONTENT ── */
+  main { padding: 3rem 4rem; max-width: 1100px; }
+
+  .section-panel { display: none; animation: fadeUp 0.3s ease; }
+  .section-panel.active { display: block; }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .section-intro {
+    border-left: 4px solid var(--accent);
+    padding: 1rem 1.5rem;
+    background: rgba(45,106,79,0.05);
+    border-radius: 0 8px 8px 0;
+    margin-bottom: 2.5rem;
+    font-size: 0.95rem;
+  }
+  .section-intro strong { color: var(--accent); }
+
+  /* ── CARDS ── */
+  .cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+  }
+  .card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.6rem;
+    transition: box-shadow 0.2s, transform 0.2s;
+    cursor: pointer;
+    position: relative;
+  }
+  .card:hover {
+    box-shadow: 0 8px 32px rgba(45,106,79,0.12);
+    transform: translateY(-2px);
+  }
+  .card-header {
+    display: flex; align-items: flex-start; gap: 1rem;
+    margin-bottom: 1rem;
+  }
+  .card-icon {
+    width: 42px; height: 42px;
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.3rem;
+    flex-shrink: 0;
+  }
+  .icon-green { background: rgba(45,106,79,0.1); }
+  .icon-amber { background: rgba(233,196,106,0.2); }
+  .icon-red   { background: rgba(193,68,14,0.1); }
+  .icon-blue  { background: rgba(72,122,180,0.1); }
+
+  .card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.05rem;
+    font-weight: 700;
+    line-height: 1.3;
+    color: var(--ink);
+  }
+  .card p {
+    font-size: 0.88rem;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+  .card-expand {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease, padding 0.3s;
+  }
+  .card.open .card-expand { max-height: 600px; }
+  .card-expand-inner {
+    padding-top: 1rem;
+    border-top: 1px solid var(--border);
+    margin-top: 1rem;
+  }
+  .expand-toggle {
+    position: absolute; top: 1.4rem; right: 1.4rem;
+    width: 24px; height: 24px;
+    border-radius: 50%;
+    background: var(--tag-bg);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.75rem;
+    color: var(--accent);
+    font-weight: 700;
+    transition: transform 0.3s;
+  }
+  .card.open .expand-toggle { transform: rotate(45deg); }
+
+  /* ── TAGS ── */
+  .tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.8rem; }
+  .tag {
+    background: var(--tag-bg);
+    border: 1px solid rgba(45,106,79,0.2);
+    color: var(--accent);
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    padding: 0.25rem 0.7rem;
+    border-radius: 20px;
+    text-transform: uppercase;
+  }
+  .tag.amber {
+    background: rgba(233,196,106,0.15);
+    border-color: rgba(199,125,46,0.3);
+    color: var(--amber-deep);
+  }
+  .tag.red {
+    background: rgba(193,68,14,0.08);
+    border-color: rgba(193,68,14,0.25);
+    color: var(--red);
+  }
+
+  /* ── REQUIRED LIST ── */
+  .req-list { list-style: none; }
+  .req-list li {
+    display: flex; align-items: flex-start; gap: 0.8rem;
+    padding: 0.8rem 0;
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+    font-size: 0.88rem;
+  }
+  .req-list li:last-child { border-bottom: none; }
+  .req-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--accent);
+    margin-top: 0.45rem;
+    flex-shrink: 0;
+  }
+  .req-dot.amber { background: var(--amber-deep); }
+  .req-dot.red   { background: var(--red); }
+
+  /* ── SYMBOLS TABLE ── */
+  .sym-table { width: 100%; border-collapse: collapse; font-size: 0.88rem; }
+  .sym-table th {
+    background: var(--ink);
+    color: var(--cream);
+    padding: 0.9rem 1.2rem;
+    text-align: left;
+    font-weight: 500;
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .sym-table td {
+    padding: 0.9rem 1.2rem;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+  }
+  .sym-table tr:last-child td { border-bottom: none; }
+  .sym-table tr:nth-child(even) td { background: rgba(0,0,0,0.02); }
+  .sym-glyph {
+    font-size: 1.6rem;
+    line-height: 1;
+    color: var(--accent);
+  }
+  .rec-badge {
+    display: inline-block;
+    background: var(--accent);
+    color: white;
+    font-size: 0.65rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 0.2rem 0.55rem;
+    border-radius: 3px;
+    margin-left: 0.5rem;
+    vertical-align: middle;
+  }
+  .opt-badge {
+    display: inline-block;
+    background: var(--amber-deep);
+    color: white;
+    font-size: 0.65rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 0.2rem 0.55rem;
+    border-radius: 3px;
+    margin-left: 0.5rem;
+    vertical-align: middle;
+  }
+
+  /* ── ALERT BOXES ── */
+  .alert {
+    border-radius: 8px;
+    padding: 1rem 1.3rem;
+    font-size: 0.88rem;
+    margin: 1.2rem 0;
+    display: flex; gap: 0.8rem; align-items: flex-start;
+  }
+  .alert-icon { font-size: 1.1rem; flex-shrink: 0; }
+  .alert.warning {
+    background: rgba(233,196,106,0.15);
+    border: 1px solid rgba(199,125,46,0.3);
+    color: #7a4f00;
+  }
+  .alert.info {
+    background: rgba(45,106,79,0.07);
+    border: 1px solid rgba(45,106,79,0.2);
+    color: #1a4033;
+  }
+  .alert.danger {
+    background: rgba(193,68,14,0.07);
+    border: 1px solid rgba(193,68,14,0.25);
+    color: var(--red);
+  }
+
+  /* ── SUSTAINABILITY CLAIMS ── */
+  .claim-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1.4rem 1.6rem;
+    margin-bottom: 1.2rem;
+  }
+  .claim-card h4 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+    margin-bottom: 0.6rem;
+    display: flex; align-items: center; gap: 0.6rem;
+  }
+  .valid-tag {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.68rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    padding: 0.2rem 0.6rem;
+    border-radius: 3px;
+    background: var(--accent);
+    color: white;
+  }
+  .caution-tag {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.68rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    padding: 0.2rem 0.6rem;
+    border-radius: 3px;
+    background: var(--amber-deep);
+    color: white;
+  }
+  .invalid-tag {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.68rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    padding: 0.2rem 0.6rem;
+    border-radius: 3px;
+    background: var(--red);
+    color: white;
+  }
+  .claim-card p { font-size: 0.87rem; color: var(--muted); }
+  .doc-link {
+    display: inline-flex; align-items: center; gap: 0.4rem;
+    margin-top: 0.6rem;
+    font-size: 0.8rem;
+    color: var(--accent);
+    font-weight: 500;
+    text-decoration: none;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--ink);
+    color: rgba(255,255,255,0.45);
+    padding: 2rem 4rem;
+    font-size: 0.78rem;
+    margin-top: 4rem;
+    display: flex; flex-wrap: wrap; justify-content: space-between; gap: 1rem;
+  }
+  footer strong { color: rgba(255,255,255,0.8); }
+
+  /* ── CHECKLIST SECTION ── */
+  .checklist-wrap { background: var(--card-bg); border-radius: 12px; border: 1px solid var(--border); padding: 1.6rem; }
+  .chk-item {
+    display: flex; align-items: flex-start; gap: 0.9rem;
+    padding: 0.7rem 0;
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+    cursor: pointer;
+    transition: background 0.15s;
+    border-radius: 4px;
+    padding-left: 4px;
+  }
+  .chk-item:last-child { border-bottom: none; }
+  .chk-item:hover { background: rgba(45,106,79,0.03); }
+  .chk-box {
+    width: 20px; height: 20px;
+    border: 2px solid var(--border);
+    border-radius: 4px;
+    flex-shrink: 0;
+    margin-top: 0.2rem;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.75rem;
+    color: white;
+    background: white;
+    transition: all 0.15s;
+  }
+  .chk-item.checked .chk-box {
+    background: var(--accent);
+    border-color: var(--accent);
+  }
+  .chk-label { font-size: 0.88rem; }
+  .chk-label small { display: block; color: var(--muted); font-size: 0.8rem; margin-top: 0.15rem; }
+  .progress-bar-wrap {
+    background: rgba(0,0,0,0.07);
+    border-radius: 20px;
+    height: 6px;
+    margin-bottom: 1.5rem;
+    overflow: hidden;
+  }
+  .progress-bar-fill {
+    height: 100%;
+    background: var(--accent);
+    border-radius: 20px;
+    transition: width 0.4s ease;
+  }
+  .progress-label { font-size: 0.8rem; color: var(--muted); margin-bottom: 0.5rem; }
+
+  @media (max-width: 768px) {
+    header, .product-bar, main, footer { padding-left: 1.5rem; padding-right: 1.5rem; }
+    .nav-tabs { padding: 0 1.5rem; }
+    .cards-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="brand-line">
+    <span class="brand-logo">Agilian Technology</span>
+    <div class="brand-divider"></div>
+    <span class="brand-dept">New Product Development · Paul Adams, Head of NPD</span>
+  </div>
+  <h1>Pet Water Bottle<br><span>Compliance &amp; Labelling Guide</span></h1>
+  <div class="header-meta">
+    <span class="meta-chip"><strong>Product:</strong> Portable Pet Water Bottle</span>
+    <span class="meta-chip"><strong>Body Material:</strong> Silicone</span>
+    <span class="meta-chip"><strong>Cap Material:</strong> Hard Plastic</span>
+    <span class="meta-chip"><strong>Target Market:</strong> US / Consumer</span>
+    <span class="meta-chip"><strong>Prepared by:</strong> NPD — Agilian Technology</span>
+  </div>
+</header>
+
+<!-- PRODUCT BAR -->
+<div class="product-bar">
+  <div>
+    <div class="product-bar-label">Application</div>
+    <div class="product-bar-value">Pet Hydration — Portable Use</div>
+  </div>
+  <div class="product-bar-sep">|</div>
+  <div>
+    <div class="product-bar-label">Primary Material</div>
+    <div class="product-bar-value">Food-Grade Silicone</div>
+  </div>
+  <div class="product-bar-sep">|</div>
+  <div>
+    <div class="product-bar-label">Secondary Material</div>
+    <div class="product-bar-value">Hard Plastic (PP / Tritan™)</div>
+  </div>
+  <div class="product-bar-sep">|</div>
+  <div>
+    <div class="product-bar-label">Standards Applicable</div>
+    <div class="product-bar-value">FDA 21 CFR · CPSC · FTC Green Guides</div>
+  </div>
+</div>
+
+<!-- NAVIGATION -->
+<nav class="nav-tabs">
+  <button class="tab-btn active" onclick="showTab('disclosures', this)">Required Disclosures</button>
+  <button class="tab-btn" onclick="showTab('symbols', this)">Label Symbols</button>
+  <button class="tab-btn" onclick="showTab('patents', this)">Patent Disclosure</button>
+  <button class="tab-btn" onclick="showTab('sustainability', this)">Sustainability Claims</button>
+  <button class="tab-btn" onclick="showTab('checklist', this)">Launch Checklist</button>
+</nav>
+
+<!-- MAIN -->
+<main>
+
+  <!-- === TAB 1: REQUIRED DISCLOSURES === -->
+  <section id="tab-disclosures" class="section-panel active">
+    <div class="section-intro">
+      <strong>Scope:</strong> The following disclosures apply to a pet water bottle with a food-contact silicone body and hard plastic cap, sold in the US consumer market. Note: "FDA approved" is not a correct term for materials — the correct terminology is <strong>"FDA compliant"</strong> or <strong>"meets FDA standards."</strong>
+    </div>
+
+    <div class="cards-grid">
+
+      <div class="card" onclick="toggleCard(this)">
+        <div class="expand-toggle">+</div>
+        <div class="card-header">
+          <div class="card-icon icon-green">🧪</div>
+          <div>
+            <h3>Food-Grade / FDA Compliance Statement</h3>
+            <p>Mandatory for any product contacting food or water consumed by animals.</p>
+          </div>
+        </div>
+        <div class="tags"><span class="tag">Required</span><span class="tag">Silicone Body</span><span class="tag">Hard Cap</span></div>
+        <div class="card-expand"><div class="card-expand-inner">
+          <ul class="req-list">
+            <li><div class="req-dot"></div><div>Silicone must comply with <strong>FDA 21 CFR §177.2600</strong> (rubber articles intended for repeated use) or <strong>§177.1210</strong> (closure compositions).</div></li>
+            <li><div class="req-dot"></div><div>Hard plastic cap must comply with <strong>FDA 21 CFR §177.1520</strong> (polyolefin resins, e.g. PP) or applicable section for Tritan™ or ABS.</div></li>
+            <li><div class="req-dot"></div><div>Correct on-pack language: <em>"Made with food-grade, FDA-compliant silicone"</em> — <strong>never</strong> "FDA approved."</div></li>
+            <li><div class="req-dot amber"></div><div>Retain supplier material certification letters (COA/SDS) referencing the 21 CFR section for regulatory audit trail.</div></li>
+          </ul>
+        </div></div>
+      </div>
+
+      <div class="card" onclick="toggleCard(this)">
+        <div class="expand-toggle">+</div>
+        <div class="card-header">
+          <div class="card-icon icon-green">🚫</div>
+          <div>
+            <h3>BPA-Free Claim</h3>
+            <p>Highly expected by US consumers — defensible if substantiated.</p>
+          </div>
+        </div>
+        <div class="tags"><span class="tag">Recommended</span><span class="tag">Hard Plastic Cap</span></div>
+        <div class="card-expand"><div class="card-expand-inner">
+          <ul class="req-list">
+            <li><div class="req-dot"></div><div>Silicone is inherently BPA-free — safe to claim.</div></li>
+            <li><div class="req-dot"></div><div>For the hard plastic cap: BPA is specific to polycarbonate. If the cap is PP, Tritan™, or similar, it is BPA-free by composition — confirm with supplier material data sheet.</div></li>
+            <li><div class="req-dot amber"></div><div>Per FTC Green Guides (16 CFR Part 260), claims must be <strong>specific and substantiated</strong>. Do not claim "BPA-free" without supplier certification or third-party test report.</div></li>
+            <li><div class="req-dot"></div><div>Suggested on-pack copy: <em>"BPA-Free Cap — Tested &amp; Certified"</em> with a third-party lab name where possible.</div></li>
+          </ul>
+          <div class="alert warning"><span class="alert-icon">⚠️</span><span>If you cannot obtain a third-party BPA test certificate for the plastic cap, limit the claim to the silicone body only, or remove the claim to avoid FTC exposure.</span></div>
+        </div></div>
+      </div>
+
+      <div class="card" onclick="toggleCard(this)">
+        <div class="expand-toggle">+</div>
+        <div class="card-header">
+          <div class="card-icon icon-amber">🐾</div>
+          <div>
+            <h3>Pet-Safe / Non-Toxic</h3>
+            <p>Common consumer expectation for pet products — must be defensible.</p>
+          </div>
+        </div>
+        <div class="tags"><span class="tag">Recommended</span><span class="tag amber">Substantiation Required</span></div>
+        <div class="card-expand"><div class="card-expand-inner">
+          <ul class="req-list">
+            <li><div class="req-dot"></div><div>No single US regulatory body "approves" pet product materials beyond FDA food-contact rules.</div></li>
+            <li><div class="req-dot"></div><div>"Non-toxic" and "pet-safe" claims are governed by <strong>FTC Act Section 5</strong> (deceptive advertising) — they must be substantiated.</div></li>
+            <li><div class="req-dot amber"></div><div>Commission a third-party migration/toxicology test (e.g. via SGS, Intertek, or Bureau Veritas) to support the claim.</div></li>
+            <li><div class="req-dot"></div><div>ASTM F963 (toy safety standard) is sometimes cited for indirect reassurance but is not directly applicable — avoid referencing it on-pack unless specifically scoped.</div></li>
+          </ul>
+        </div></div>
+      </div>
+
+      <div class="card" onclick="toggleCard(this)">
+        <div class="expand-toggle">+</div>
+        <div class="card-header">
+          <div class="card-icon icon-blue">🏭</div>
+          <div>
+            <h3>Country of Origin</h3>
+            <p>Mandatory under US Customs &amp; CBP regulations.</p>
+          </div>
+        </div>
+        <div class="tags"><span class="tag">Mandatory</span><span class="tag">Product &amp; Packaging</span></div>
+        <div class="card-expand"><div class="card-expand-inner">
+          <ul class="req-list">
+            <li><div class="req-dot"></div><div>Must appear on the product itself or permanently affixed label: <strong>"Made in China"</strong> (or country where substantially transformed).</div></li>
+            <li><div class="req-dot"></div><div>Governed by <strong>19 U.S.C. §1304</strong> and CBP regulations. Must be <em>legible, permanent, and conspicuous.</em></div></li>
+            <li><div class="req-dot amber"></div><div>If assembled in China from components, China remains the COO. Verify with your import/export counsel if any component substitutions occur.</div></li>
+          </ul>
+        </div></div>
+      </div>
+
+      <div class="card" onclick="toggleCard(this)">
+        <div class="expand-toggle">+</div>
+        <div class="card-header">
+          <div class="card-icon icon-blue">📋</div>
+          <div>
+            <h3>Manufacturer / Importer Information</h3>
+            <p>Traceability and consumer contact — required for CPSC compliance.</p>
+          </div>
+        </div>
+        <div class="tags"><span class="tag">Mandatory</span><span class="tag">CPSC</span></div>
+        <div class="card-expand"><div class="card-expand-inner">
+          <ul class="req-list">
+            <li><div class="req-dot"></div><div>Include importer/distributor name and US address on packaging per <strong>CPSC regulations</strong>.</div></li>
+            <li><div class="req-dot"></div><div>Include a customer service contact (email or phone) for product safety communications.</div></li>
+            <li><div class="req-dot amber"></div><div>Per <strong>CPSC Section 14(a)</strong>, consumer products must carry a tracking label (production batch/date/location). A moulded-in date code on the base satisfies this for the silicone body.</div></li>
+          </ul>
+        </div></div>
+      </div>
+
+      <div class="card" onclick="toggleCard(this)">
+        <div class="expand-toggle">+</div>
+        <div class="card-header">
+          <div class="card-icon icon-red">⚠️</div>
+          <div>
+            <h3>Prop 65 Warning (California)</h3>
+            <p>Required if selling in California and product contains listed substances.</p>
+          </div>
+        </div>
+        <div class="tags"><span class="tag red">California Only</span><span class="tag">Conditional</span></div>
+        <div class="card-expand"><div class="card-expand-inner">
+          <ul class="req-list">
+            <li><div class="req-dot red"></div><div><strong>California Proposition 65</strong> (Safe Drinking Water &amp; Toxic Enforcement Act) requires warnings if products expose consumers to chemicals on the state's list at levels above safe harbor thresholds.</div></li>
+            <li><div class="req-dot red"></div><div>Common triggers for silicone/plastic products: lead, phthalates, DEHP, DBP. Conduct XRF screening and migration testing.</div></li>
+            <li><div class="req-dot amber"></div><div>If clean test results are obtained, no Prop 65 warning needed — retain test records. If uncertain, affix a warning label to avoid civil litigation exposure.</div></li>
+            <li><div class="req-dot"></div><div>Minimum compliant warning (short form): <em>"WARNING: This product can expose you to chemicals including [name], which is known to the State of California to cause [cancer/reproductive harm]. For more information go to www.P65Warnings.ca.gov."</em></div></li>
+          </ul>
+        </div></div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- === TAB 2: LABEL SYMBOLS === -->
+  <section id="tab-symbols" class="section-panel">
+    <div class="section-intro">
+      <strong>Recommendation:</strong> The symbols below are industry-standard and consumer-trusted. Recommended symbols are those with the highest impact for a pet water bottle product. Optional symbols add value but require additional testing or certification cost.
+    </div>
+
+    <div class="alert info"><span class="alert-icon">ℹ️</span><span>Symbols without a certified programme (e.g. a "dishwasher safe" symbol you design yourself) are permissible but must be accurately substantiated. Where certified third-party marks exist, they carry more weight with consumers and retailers.</span></div>
+
+    <table class="sym-table">
+      <thead>
+        <tr>
+          <th>Symbol</th>
+          <th>Name</th>
+          <th>Applies To</th>
+          <th>Notes &amp; Recommendation</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><div class="sym-glyph">♻️</div></td>
+          <td><strong>Resin ID Code</strong> (e.g. <code>5 PP</code> or <code>7 OTHER</code>) <span class="rec-badge">Required</span></td>
+          <td>Hard Plastic Cap</td>
+          <td>Mandatory in many US states. Moulded into cap base. Identify resin type with your tooling team — PP = code 5, PC = code 7, Tritan = code 7.</td>
+        </tr>
+        <tr>
+          <td><div class="sym-glyph">🍽️</div></td>
+          <td><strong>Food-Contact Safe Symbol</strong> <span class="rec-badge">Recommended</span></td>
+          <td>Silicone Body + Cap</td>
+          <td>Fork-and-glass symbol (EN 1186 / ISO). Widely recognised globally. Commission this from your mould tool — moulded-in on the silicone base. No certification fee; indicates food-safe intent.</td>
+        </tr>
+        <tr>
+          <td><div class="sym-glyph">🫧</div></td>
+          <td><strong>Dishwasher Safe Symbol</strong> <span class="opt-badge">Optional</span></td>
+          <td>Silicone Body</td>
+          <td>Represented by a simplified plate/water-droplet graphic (no universal standard body). Silicone is generally dishwasher safe to 200°C+ but verify the hard plastic cap's temp rating first — caps often degrade at high heat. Only use if you have validated both components or qualify the claim (e.g. "Top rack only").</td>
+        </tr>
+        <tr>
+          <td><div class="sym-glyph">🚫🅱️</div></td>
+          <td><strong>BPA-Free Mark</strong> <span class="rec-badge">Recommended</span></td>
+          <td>Cap + Packaging</td>
+          <td>No single certifying body owns "BPA-Free" — it is a self-declared claim verified by test data. Use a clean graphical "BPA Free" badge on packaging, supported by third-party test report. Consumers strongly associate this with safety.</td>
+        </tr>
+        <tr>
+          <td><div class="sym-glyph">🌡️</div></td>
+          <td><strong>Temperature Range</strong> <span class="opt-badge">Optional</span></td>
+          <td>Both Components</td>
+          <td>Consider a hot/cold temperature range indicator (e.g. -40°C to +200°C for silicone). Differentiates product in PDP imagery and packaging. Validate cap temperature range separately.</td>
+        </tr>
+        <tr>
+          <td><div class="sym-glyph">🏭</div></td>
+          <td><strong>CPSC Tracking Label</strong> <span class="rec-badge">Required</span></td>
+          <td>Product Base</td>
+          <td>Must include: manufacturer name, production location, production date code. Moulded into silicone base is preferred. Satisfies <strong>CPSA Section 14(a)</strong>.</td>
+        </tr>
+        <tr>
+          <td><div class="sym-glyph">🌿</div></td>
+          <td><strong>Sustainability / Eco Mark</strong> <span class="opt-badge">Optional</span></td>
+          <td>Packaging</td>
+          <td>Only use certified marks (e.g. FSC for packaging, recycled content % for packaging substrate). Do not apply a generic "eco-friendly" leaf without substantiation — FTC Green Guides scrutinise this heavily. See Sustainability tab for specifics.</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- === TAB 3: PATENT DISCLOSURE === -->
+  <section id="tab-patents" class="section-panel">
+    <div class="section-intro">
+      <strong>Scope:</strong> If the pet water bottle (or any feature of it) is patented, US law imposes specific marking obligations. Failure to mark can affect your ability to recover damages in infringement litigation.
+    </div>
+
+    <div class="cards-grid">
+
+      <div class="card" onclick="toggleCard(this)">
+        <div class="expand-toggle">+</div>
+        <div class="card-header">
+          <div class="card-icon icon-green">📜</div>
+          <div>
+            <h3>US Patent Marking — 35 U.S.C. §287</h3>
+            <p>Core marking obligation for patented products sold in the US.</p>
+          </div>
+        </div>
+        <div class="tags"><span class="tag">Mandatory if Patented</span></div>
+        <div class="card-expand"><div class="card-expand-inner">
+          <ul class="req-list">
+            <li><div class="req-dot"></div><div><strong>Physical marking (traditional):</strong> Affix the word "Patent" or abbreviation "Pat." followed by the patent number(s) to the product or packaging. E.g. <em>"Pat. US10,123,456"</em>.</div></li>
+            <li><div class="req-dot"></div><div><strong>Virtual marking (since AIA 2011):</strong> Mark with <em>"Patent"</em> or <em>"Pat."</em> followed by a URL directing consumers to a page listing applicable patents. E.g. <em>"Pat. agilian.com/patents"</em>. This is the preferred method for manufactured products as it avoids retooling when patents are added or expire.</div></li>
+            <li><div class="req-dot amber"></div><div>Marking must be applied to as many units as reasonably practicable. Failure to mark limits damages recovery to post-notice infringement only.</div></li>
+            <li><div class="req-dot red"></div><div><strong>False marking (35 U.S.C. §292):</strong> Marking a product as patented when it is not (or after a patent has expired) is a federal offence. Do not use "Patent Pending" on a product once a patent has granted or been abandoned.</div></li>
+          </ul>
+        </div></div>
+      </div>
+
+      <div class="card" onclick="toggleCard(this)">
+        <div class="expand-toggle">+</div>
+        <div class="card-header">
+          <div class="card-icon icon-amber">⏳</div>
+          <div>
+            <h3>"Patent Pending" Marking</h3>
+            <p>Used when a patent application has been filed but not yet granted.</p>
+          </div>
+        </div>
+        <div class="tags"><span class="tag amber">During Application Phase</span></div>
+        <div class="card-expand"><div class="card-expand-inner">
+          <ul class="req-list">
+            <li><div class="req-dot"></div><div>Permissible once a provisional or non-provisional application is filed with the USPTO.</div></li>
+            <li><div class="req-dot"></div><div>Provides notice to potential infringers and may deter copying, though it confers no legal enforcement rights until the patent grants.</div></li>
+            <li><div class="req-dot amber"></div><div>Must be removed or updated to the granted patent number promptly after grant. Continued use of "Patent Pending" after grant or abandonment is deceptive.</div></li>
+            <li><div class="req-dot"></div><div>For moulded silicone products, consider moulding-in a placeholder slot or printing on packaging to allow cost-effective updates without retooling.</div></li>
+          </ul>
+        </div></div>
+      </div>
+
+      <div class="card" onclick="toggleCard(this)">
+        <div class="expand-toggle">+</div>
+        <div class="card-header">
+          <div class="card-icon icon-blue">🌍</div>
+          <div>
+            <h3>International Patent Marking Considerations</h3>
+            <p>If selling outside the US, different marking rules apply.</p>
+          </div>
+        </div>
+        <div class="tags"><span class="tag">EU / UK / AU</span><span class="tag">Advisory</span></div>
+        <div class="card-expand"><div class="card-expand-inner">
+          <ul class="req-list">
+            <li><div class="req-dot"></div><div><strong>UK / EU:</strong> No statutory obligation to mark, but marking is commercially prudent and aids enforcement. Format: <em>"EP [number]"</em> or <em>"GB [number]"</em>.</div></li>
+            <li><div class="req-dot"></div><div><strong>Australia:</strong> No marking requirement, but marking supports damages claims. Format: <em>"AU Pat. [number]"</em>.</div></li>
+            <li><div class="req-dot amber"></div><div>Virtual marking (a URL) is the most flexible approach for international products — a single marking links to a jurisdiction-sorted patent page.</div></li>
+            <li><div class="req-dot"></div><div>Recommended: Maintain a <code>patents.agilian.com</code> (or customer brand equivalent) landing page with all applicable patents listed by market.</div></li>
+          </ul>
+        </div></div>
+      </div>
+
+    </div>
+
+    <div class="alert info"><span class="alert-icon">ℹ️</span><span>Agilian NPD recommends using <strong>virtual patent marking</strong> (a URL on the product base or packaging) as standard practice across all OEM programmes — it eliminates retooling risk when the patent portfolio changes and satisfies US, EU, and AU requirements with a single mark.</span></div>
+  </section>
+
+  <!-- === TAB 4: SUSTAINABILITY === -->
+  <section id="tab-sustainability" class="section-panel">
+    <div class="section-intro">
+      <strong>Regulatory context:</strong> The <strong>FTC Green Guides (16 CFR Part 260)</strong> govern all environmental marketing claims in the US. The FTC may investigate and prosecute deceptive green claims. Claims must be specific, substantiated, and not create a misleading impression. Vague terms like "eco-friendly," "green," or "sustainable" without qualification are high-risk.
+    </div>
+
+    <div class="claim-card">
+      <h4>🟢 Silicone Longevity / Durability <span class="valid-tag">Defensible</span></h4>
+      <p>Silicone has outstanding durability versus single-use plastics — it resists UV, ozone, and extreme temperatures. A claim such as <em>"Built to last — reduces single-use plastic waste"</em> is defensible and specific. Substantiation: material longevity data from the silicone supplier (e.g. >10,000 flex cycles, temperature range). This is the strongest and lowest-risk sustainability claim available for this product.</p>
+    </div>
+
+    <div class="claim-card">
+      <h4>🟢 Reusability / Replaces Single-Use <span class="valid-tag">Defensible</span></h4>
+      <p>A reusable pet water bottle directly displaces single-use plastic bottles. Claims like <em>"Reusable — replaces hundreds of single-use bottles"</em> are accepted and encouraged by the FTC when specific and accurate. Quantify the claim conservatively (e.g. "replaces 300+ single-use bottles over its lifetime" if backed by a reasonable usage model).</p>
+    </div>
+
+    <div class="claim-card">
+      <h4>🟡 Silicone Recyclability <span class="caution-tag">Caution</span></h4>
+      <p>Silicone is technically recyclable (devulcanisation process) but <strong>is not accepted in standard municipal recycling streams</strong> in most US cities. A general "recyclable" claim would be deceptive under FTC Green Guides unless you specify conditions. A defensible alternative: <em>"Recyclable through specialist silicone recycling programmes — contact us for details."</em> Consider partnering with TerraCycle or a silicone recycler to make this real and documentable.</p>
+      <a class="doc-link" href="https://www.ecomena.org/silicone-recycling/" target="_blank">→ Silicone recycling programme information (external)</a>
+    </div>
+
+    <div class="claim-card">
+      <h4>🟡 Hard Plastic Cap — Recycled Content <span class="caution-tag">Verify with Supplier</span></h4>
+      <p>If the cap resin contains post-consumer recycled (PCR) content, this is a strong and specific claim: e.g. <em>"Cap made with 30% recycled plastic."</em> Requires supplier certification of recycled content percentage. If virgin resin only, this claim is not available — do not make it.</p>
+    </div>
+
+    <div class="claim-card">
+      <h4>🔴 "Eco-Friendly" / "Sustainable" (unqualified) <span class="invalid-tag">High Risk — Avoid</span></h4>
+      <p>Broad, unqualified claims like "eco-friendly," "sustainable," "good for the planet," or "green" are the primary target of FTC Green Guides enforcement. Without specific, substantiated environmental benefit data attached to each claim, these terms expose the brand and importer to FTC investigation and retailer delisting. <strong>Do not use these terms unqualified.</strong> Instead, replace with specific claims (see above).</p>
+    </div>
+
+    <div class="alert warning" style="margin-top:2rem;">
+      <span class="alert-icon">⚠️</span>
+      <span><strong>Documentation Agilian recommends obtaining:</strong> (1) Silicone supplier material safety data sheet (SDS) referencing FDA 21 CFR compliance. (2) Third-party migration test report (SGS/Intertek/BV). (3) BPA-free test certificate for plastic cap. (4) Recycled content certificate if applicable. (5) Silicone supplier longevity/durability data sheet. These documents collectively support all defensible sustainability and safety claims on-pack.</span>
+    </div>
+  </section>
+
+  <!-- === TAB 5: LAUNCH CHECKLIST === -->
+  <section id="tab-checklist" class="section-panel">
+    <div class="section-intro">
+      <strong>Pre-Launch Label &amp; Compliance Checklist</strong> — Use this interactive checklist to track labelling and compliance sign-off before final artwork freeze.
+    </div>
+
+    <div class="checklist-wrap">
+      <div class="progress-label">Completion: <span id="progress-pct">0%</span></div>
+      <div class="progress-bar-wrap"><div class="progress-bar-fill" id="progress-bar" style="width:0%"></div></div>
+
+      <div class="chk-item" onclick="toggleChk(this)">
+        <div class="chk-box">✓</div>
+        <div class="chk-label">Silicone supplier COA obtained, confirming FDA 21 CFR §177.2600 compliance
+          <small>Required before any FDA-compliant claim on pack</small></div>
+      </div>
+      <div class="chk-item" onclick="toggleChk(this)">
+        <div class="chk-box">✓</div>
+        <div class="chk-label">Hard plastic cap resin identified (PP / Tritan / ABS) and FDA 21 CFR section confirmed
+          <small>Required for food-contact safe and BPA-free claims</small></div>
+      </div>
+      <div class="chk-item" onclick="toggleChk(this)">
+        <div class="chk-box">✓</div>
+        <div class="chk-label">Third-party BPA migration test ordered (SGS / Intertek / Bureau Veritas)
+          <small>Required to substantiate BPA-Free claim on cap</small></div>
+      </div>
+      <div class="chk-item" onclick="toggleChk(this)">
+        <div class="chk-box">✓</div>
+        <div class="chk-label">Third-party BPA test report received and archived
+          <small>Must be on file before final packaging print run</small></div>
+      </div>
+      <div class="chk-item" onclick="toggleChk(this)">
+        <div class="chk-box">✓</div>
+        <div class="chk-label">Prop 65 screening (XRF + migration) completed for California market
+          <small>Required if any California distribution channel exists</small></div>
+      </div>
+      <div class="chk-item" onclick="toggleChk(this)">
+        <div class="chk-box">✓</div>
+        <div class="chk-label">"Made in China" Country of Origin marked on product and outer carton
+          <small>19 U.S.C. §1304 — mandatory</small></div>
+      </div>
+      <div class="chk-item" onclick="toggleChk(this)">
+        <div class="chk-box">✓</div>
+        <div class="chk-label">CPSC tracking label (batch / date / location) incorporated into silicone mould tool
+          <small>CPSA Section 14(a) — mould design review action</small></div>
+      </div>
+      <div class="chk-item" onclick="toggleChk(this)">
+        <div class="chk-box">✓</div>
+        <div class="chk-label">Resin ID code (e.g. "5 PP") added to hard plastic cap tool design
+          <small>Moulded-in on base — required in many US states</small></div>
+      </div>
+      <div class="chk-item" onclick="toggleChk(this)">
+        <div class="chk-box">✓</div>
+        <div class="chk-label">Food-contact safe symbol (fork &amp; glass) confirmed in silicone tool artwork
+          <small>Recommended — EN 1186 / ISO recognised symbol</small></div>
+      </div>
+      <div class="chk-item" onclick="toggleChk(this)">
+        <div class="chk-box">✓</div>
+        <div class="chk-label">Dishwasher-safe claim validated: cap temperature spec confirmed with tooling team
+          <small>Do not claim if cap does not withstand dishwasher heat cycle</small></div>
+      </div>
+      <div class="chk-item" onclick="toggleChk(this)">
+        <div class="chk-box">✓</div>
+        <div class="chk-label">Patent status confirmed: application filed / granted / not applicable
+          <small>Determines whether "Patent Pending" or "Pat. US[X]" marking required</small></div>
+      </div>
+      <div class="chk-item" onclick="toggleChk(this)">
+        <div class="chk-box">✓</div>
+        <div class="chk-label">Patent marking applied (virtual URL or physical number) — verified with IP counsel
+          <small>35 U.S.C. §287 — required if patented</small></div>
+      </div>
+      <div class="chk-item" onclick="toggleChk(this)">
+        <div class="chk-box">✓</div>
+        <div class="chk-label">All sustainability claims reviewed against FTC Green Guides — vague terms removed
+          <small>16 CFR Part 260 — legal review recommended before print</small></div>
+      </div>
+      <div class="chk-item" onclick="toggleChk(this)">
+        <div class="chk-box">✓</div>
+        <div class="chk-label">Final packaging artwork approved by NPD, Regulatory, and Brand stakeholders
+          <small>Final artwork freeze — gate action</small></div>
+      </div>
+      <div class="chk-item" onclick="toggleChk(this)">
+        <div class="chk-box">✓</div>
+        <div class="chk-label">All compliance documentation archived in NPD project folder (COA, test reports, SDS)
+          <small>Retained for minimum 5 years post-launch — CPSC requirement</small></div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <div>
+    <strong>Agilian Technology — New Product Development</strong><br>
+    Prepared by: Paul Adams, Head of NPD<br>
+    Document type: Compliance &amp; Labelling Advisory
+  </div>
+  <div style="text-align:right;">
+    Product: Portable Pet Water Bottle (Silicone + Hard Plastic Cap)<br>
+    Reference standards: FDA 21 CFR · 35 U.S.C. §287 · FTC 16 CFR Part 260 · CPSA Section 14(a)<br>
+    <em>This document is an internal advisory. Confirm all claims with qualified regulatory counsel before final packaging release.</em>
+  </div>
+</footer>
+
+<script>
+  function showTab(id, btn) {
+    document.querySelectorAll('.section-panel').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById('tab-' + id).classList.add('active');
+    btn.classList.add('active');
+  }
+
+  function toggleCard(card) {
+    card.classList.toggle('open');
+  }
+
+  function toggleChk(item) {
+    item.classList.toggle('checked');
+    updateProgress();
+  }
+
+  function updateProgress() {
+    const items = document.querySelectorAll('.chk-item');
+    const checked = document.querySelectorAll('.chk-item.checked').length;
+    const pct = Math.round((checked / items.length) * 100);
+    document.getElementById('progress-pct').textContent = pct + '%';
+    document.getElementById('progress-bar').style.width = pct + '%';
+  }
+</script>
+</body>
+</html>
